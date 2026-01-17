@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imel-haj <imel-haj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 23:16:13 by imel-haj          #+#    #+#             */
-/*   Updated: 2026/01/16 16:30:37 by slamhaou         ###   ########.fr       */
+/*   Updated: 2026/01/17 16:36:20 by imel-haj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
 
-void	raycasting_3d(t_data *data, t_ray ray)
+void	raycasting_3d(t_data *data)
 {
-	int	x;
-	int	line_h;
+	int		x;
+	int		line_h;
+	t_ray	ray;
 
 	x = 0;
 	while (x < WIDTH)

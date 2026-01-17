@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imel-haj <imel-haj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 23:16:01 by imel-haj          #+#    #+#             */
-/*   Updated: 2026/01/16 16:41:56 by slamhaou         ###   ########.fr       */
+/*   Updated: 2026/01/17 16:37:07 by imel-haj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,20 @@ void	put_text_gun(char **paths)
 	paths[4] = "./frames/shotgun5.png";
 }
 
-void	load_txt_gun(t_data *data)
+void	free_mlx(t_data *data, int max)
+{
+	int	i;
+
+	i = 0;
+	while (i < max)
+	{
+		mlx_delete_image(data->mlx, data->texture[i].img_ptr);
+		i++;
+	}
+	free_data(data);
+}
+
+int	load_txt_gun(t_data *data)
 {
 	int				i;
 	mlx_texture_t	*texture;
@@ -35,7 +48,7 @@ void	load_txt_gun(t_data *data)
 	{
 		texture = mlx_load_png(paths[i]);
 		if (!texture)
-			exit(1);
+			return (free_mlx(data, i), -1);
 		data->gun.frames[i] = mlx_texture_to_image(data->mlx, texture);
 		mlx_delete_texture(texture);
 		x = (WIDTH / 2) - (data->gun.frames[i]->width / 2);
@@ -47,9 +60,10 @@ void	load_txt_gun(t_data *data)
 	data->gun.frames[0]->enabled = true;
 	data->gun.current_frame = 0;
 	data->gun.is_shooting = false;
+	return (0);
 }
 
-void	load_textures(t_data *data)
+int	load_textures(t_data *data)
 {
 	int				i;
 	t_path			*list;
@@ -61,9 +75,7 @@ void	load_textures(t_data *data)
 	{
 		tex = mlx_load_png(list->texter);
 		if (!tex)
-		{
-			exit(0);
-		}
+			return (free_mlx(data, i), -1);
 		data->texture[i].img_ptr = mlx_texture_to_image(data->mlx, tex);
 		data->texture[i].width = tex->width;
 		data->texture[i].height = tex->height;
@@ -71,4 +83,5 @@ void	load_textures(t_data *data)
 		i++;
 		list = list->next;
 	}
+	return (0);
 }

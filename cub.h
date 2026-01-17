@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imel-haj <imel-haj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 18:27:07 by slamhaou          #+#    #+#             */
-/*   Updated: 2026/01/16 16:31:23 by slamhaou         ###   ########.fr       */
+/*   Updated: 2026/01/17 15:35:26 by imel-haj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ typedef struct data_file_cub
 	int			**clr;
 	t_path		*path;
 	t_path		*list;
-	// char		**info;
 	char		*addr;
 	int			bits_per_pixel;
 	int			line_length;
@@ -179,21 +178,22 @@ void			ft_free_int(int **tab, int size);
 char			*take_lin_data(int fd);
 
 //-----------------------------raycasting----------------------------//
+void			free_mlx(t_data *data, int max);
 void			draw_minimap(t_data *data);
 unsigned int	get_minimap_color(t_data *data, int x, int y);
 void			rotate_player(t_data *data, double angle);
 void			move_player(t_data *data, double dx, double dy);
 void			handle_input(void *param);
 void			mouse_hook(double xpos, double ypos, void *param);
-void			raycasting_3d(t_data *data, t_ray ray);
+void			raycasting_3d(t_data *data);
 void			render_column(t_data *data, t_ray *ray, int x, int lineH);
 void			perform_dda(t_data *data, t_ray *ray, int hit);
 void			set_ray_step(t_data *data, t_ray *ray);
 void			init_ray(t_data *data, t_ray *ray, int x);
 void			draw_ceiling_floor(t_data *data);
 void			draw_square(t_data *data, t_point p, int size, uint32_t color);
-void			load_txt_gun(t_data *data);
-void			load_textures(t_data *data);
+int			load_txt_gun(t_data *data);
+int			load_textures(t_data *data);
 void			handle_shooting(void *param);
 void			update_gun_animation(t_data *data);
 unsigned int	rgb_to_int(int r, int g, int b, int a);
