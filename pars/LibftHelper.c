@@ -6,7 +6,7 @@
 /*   By: imel-haj <imel-haj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 11:37:42 by slamhaou          #+#    #+#             */
-/*   Updated: 2026/01/18 12:46:35 by imel-haj         ###   ########.fr       */
+/*   Updated: 2026/01/18 13:16:32 by imel-haj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,9 @@ char	*str_dup(char *s)
 char	*ft_strjoin(char *s1, char *lin)
 {
 	char	*arr;
-	//char	*s2;
 	int		i;
 	int		j;
 
-	//s2 = skip_spc(lin);
 	if (!s1 && lin)
 	{
 		arr = str_dup(lin);
