@@ -6,7 +6,7 @@
 /*   By: imel-haj <imel-haj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 08:23:40 by slamhaou          #+#    #+#             */
-/*   Updated: 2026/01/17 16:31:15 by imel-haj         ###   ########.fr       */
+/*   Updated: 2026/01/18 12:50:00 by imel-haj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	get_map(t_data *data, int fd)
 	if (!long_str || player == '0')
 		return (free(long_str), -1);
 	data->map_info.map = ft_split(long_str, '\n');
+	if (!data->map_info.map)
+		return (free(long_str), -1);
 	return (free(long_str), 0);
 }
 
@@ -52,6 +54,8 @@ int	get_path_color(int fd, t_data *data)
 		if (!str)
 			break ;
 		lin = skip_spc(str);
+		if (!lin)
+			return (free(str), get_next_line(-1), -1);
 		free(str);
 		if (lin[0] != '\n' && lin[0])
 		{
@@ -73,7 +77,7 @@ int	init_data(t_data *data)
 	i = 0;
 	data->clr = malloc(sizeof(int *) * 3);
 	if (!data->clr)
-		return (write(1, "fild init data", 14), -1);
+		return (write(1, "❌field init data\n", 18), -1);
 	while (i < 2)
 	{
 		data->clr[i] = malloc(sizeof(int) * 4);
@@ -82,16 +86,17 @@ int	init_data(t_data *data)
 		i++;
 	}
 	data->clr[i] = NULL;
-	i = 0;
 	data->path = ft_lstnew();
+	if (!data->path)
+		return (ft_free_int(data->clr, 2), -1);
+	i = 0;
 	while (i < 3)
 	{
-		ft_lstadd_back(&data->path, ft_lstnew());
+		if (ft_lstadd_back(&data->path, ft_lstnew()))
+			return (ft_free_int(data->clr, 2), ft_lstclear(&data->path), -1);
 		i++;
 	}
-	data->list = data->path;
-	data->map_info.map = NULL;
-	return (0);
+	return (data->map_info.map = NULL, data->list = data->path, 0);
 }
 
 int	dot_cub(char *str)
@@ -114,15 +119,15 @@ int	start_pars(char *str, t_data *data)
 	int		fd;
 	char	**tst_map;
 
-	if (dot_cub(str) == 0)
-		return (write(2, "ERORR FILE Name\n", 17), -1);
+	if (!dot_cub(str))
+		return (write(2, "❌ERORR FILE Name\n", 18), -1);
 	fd = open(str, O_RDONLY);
 	if (fd < 0)
-		return (write(2, "Erorr file \n", 13), -1);
+		return (write(2, "❌Erorr File Not Found\n", 23), -1);
 	if (init_data(data))
 		return (close(fd), -1);
 	if (get_path_color(fd, data) == -1)
-		return (close(fd), free_data(data), -1);
+		return (close (fd), free_data(data), -1);
 	if (get_map(data, fd) < 0)
 		return (err_msg("Erorr: map erorr\n", data), close(fd), -1);
 	tst_map = get_tst_map(data->map_info.map, data);

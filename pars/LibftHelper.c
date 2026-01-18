@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   LibftHelper.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imel-haj <imel-haj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 11:37:42 by slamhaou          #+#    #+#             */
-/*   Updated: 2026/01/14 15:15:52 by slamhaou         ###   ########.fr       */
+/*   Updated: 2026/01/18 12:46:35 by imel-haj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,19 +86,19 @@ char	*str_dup(char *s)
 char	*ft_strjoin(char *s1, char *lin)
 {
 	char	*arr;
-	char	*s2;
+	//char	*s2;
 	int		i;
 	int		j;
 
-	s2 = skip_spc(lin);
-	if (!s1 && s2)
+	//s2 = skip_spc(lin);
+	if (!s1 && lin)
 	{
-		arr = str_dup(s2);
-		return (free(s2), arr);
+		arr = str_dup(lin);
+		return (arr);
 	}
-	if (!s2 && s1)
+	if (!lin && s1)
 		return (s1);
-	arr = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	arr = malloc(ft_strlen(s1) + ft_strlen(lin) + 1);
 	if (!arr)
 		return (NULL);
 	i = 0;
@@ -106,8 +106,8 @@ char	*ft_strjoin(char *s1, char *lin)
 	while (s1[i])
 		arr[j++] = s1[i++];
 	i = 0;
-	while (s2[i])
-		arr[j++] = s2[i++];
+	while (lin[i])
+		arr[j++] = lin[i++];
 	arr[j] = '\0';
-	return (free(s2), free(s1), arr);
+	return (free(s1), arr);
 }

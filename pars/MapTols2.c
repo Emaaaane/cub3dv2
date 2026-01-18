@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   MapTols2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imel-haj <imel-haj@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 12:02:46 by slamhaou          #+#    #+#             */
-/*   Updated: 2026/01/17 16:31:42 by imel-haj         ###   ########.fr       */
+/*   Updated: 2026/01/18 09:28:48 by slamhaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
-
-int	lin_is_sps(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (!(str[i] <= 32) && str[i] != '\n')
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 int	wall_check(char *str, char c)
 {
@@ -63,7 +49,7 @@ int	how_many_pl(char *p, char *str, int *count)
 			(*count)++;
 		}
 		if (str[i] != '0' && str[i] != '1' && s_w_e_n(str[i]) == 0
-			&& !(str[i] <= 32) && str[i] != 'D')
+			&& !(str[i] <= 32))
 			return (-1);
 		i++;
 	}
@@ -103,7 +89,7 @@ char	**fill_arr(char **arr, char **map, int max)
 		j = 0;
 		arr[i] = malloc(max + 1);
 		if (!arr[i])
-			return ( arr[i] = NULL, ft_fre(arr), NULL);
+			return (arr[i] = NULL, ft_fre(arr), NULL);
 		while (map[i][j])
 		{
 			arr[i][j] = map[i][j];

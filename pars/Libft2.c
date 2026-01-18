@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Libft2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imel-haj <imel-haj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 15:15:03 by slamhaou          #+#    #+#             */
-/*   Updated: 2026/01/14 22:26:22 by slamhaou         ###   ########.fr       */
+/*   Updated: 2026/01/18 10:56:41 by imel-haj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,22 @@ int	is_num(char c)
 	return (0);
 }
 
-void	ft_lstadd_back(t_path **lst, t_path *new)
+int	ft_lstadd_back(t_path **lst, t_path *new)
 {
 	t_path	*list;
 
 	if (!lst || !new)
-		return ;
+		return (1);
 	list = *lst;
 	if (*lst == NULL)
 	{
 		*lst = new;
-		return ;
+		return (0);
 	}
 	while (list->next)
 		list = list->next;
 	list->next = new;
+	return (0);
 }
 
 t_path	*ft_lstnew(void)
@@ -70,7 +71,8 @@ void	ft_lstclear(t_path **lst)
 	{
 		list = *lst;
 		*lst = (*lst)->next;
-		close(list->fd);
+		if (list->fd > 0)
+			close(list->fd);
 		ft_lstdelone(list);
 	}
 	*lst = NULL;

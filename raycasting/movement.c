@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imel-haj <imel-haj@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 23:15:59 by imel-haj          #+#    #+#             */
-/*   Updated: 2026/01/17 16:35:55 by imel-haj         ###   ########.fr       */
+/*   Updated: 2026/01/17 17:33:18 by slamhaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,6 @@ void	move_player(t_data *data, double dx, double dy)
 	}
 }
 
-void	cleanup_gun(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < 5)
-	{
-		if (data->gun.frames[i])
-			mlx_delete_image(data->mlx, data->gun.frames[i]);
-		i++;
-	}
-}
-
 void	handle_input(void *param)
 {
 	t_data	*d;
@@ -72,10 +59,7 @@ void	handle_input(void *param)
 	d = (t_data *)param;
 	s = 0.08;
 	if (mlx_is_key_down(d->mlx, MLX_KEY_ESCAPE))
-	{
 		mlx_close_window(d->mlx);
-		cleanup_gun(d);
-	}
 	if (mlx_is_key_down(d->mlx, MLX_KEY_W))
 		move_player(d, d->player.dir_x * s, d->player.dir_y * s);
 	if (mlx_is_key_down(d->mlx, MLX_KEY_S))

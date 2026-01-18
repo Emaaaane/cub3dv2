@@ -6,7 +6,7 @@
 /*   By: imel-haj <imel-haj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 18:27:07 by slamhaou          #+#    #+#             */
-/*   Updated: 2026/01/17 15:35:26 by imel-haj         ###   ########.fr       */
+/*   Updated: 2026/01/18 12:51:04 by imel-haj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 
 # define COLORS 1
 # define PATH 2
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 1400
+# define HEIGHT 1000
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 #  define TOTALCOLRSTXTUR 6
@@ -151,7 +151,7 @@ char			**ft_split(char *str, char sep);
 int				lin_is_sps(char *str);
 int				ft_atoi(const char *str);
 t_path			*ft_lstnew(void);
-void			ft_lstadd_back(t_path **lst, t_path *new);
+int				ft_lstadd_back(t_path **lst, t_path *new);
 void			ft_lstclear(t_path **lst);
 
 /////////////////////////////-----check----------//////////////
@@ -178,7 +178,7 @@ void			ft_free_int(int **tab, int size);
 char			*take_lin_data(int fd);
 
 //-----------------------------raycasting----------------------------//
-void			free_mlx(t_data *data, int max);
+void			free_mlx(t_data *data, int max, char c);
 void			draw_minimap(t_data *data);
 unsigned int	get_minimap_color(t_data *data, int x, int y);
 void			rotate_player(t_data *data, double angle);
@@ -192,8 +192,8 @@ void			set_ray_step(t_data *data, t_ray *ray);
 void			init_ray(t_data *data, t_ray *ray, int x);
 void			draw_ceiling_floor(t_data *data);
 void			draw_square(t_data *data, t_point p, int size, uint32_t color);
-int			load_txt_gun(t_data *data);
-int			load_textures(t_data *data);
+int				load_txt_gun(t_data *data);
+int				load_textures(t_data *data);
 void			handle_shooting(void *param);
 void			update_gun_animation(t_data *data);
 unsigned int	rgb_to_int(int r, int g, int b, int a);

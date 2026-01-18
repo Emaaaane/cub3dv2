@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slamhaou <slamhaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imel-haj <imel-haj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 15:32:46 by slamhaou          #+#    #+#             */
-/*   Updated: 2026/01/14 15:16:25 by slamhaou         ###   ########.fr       */
+/*   Updated: 2026/01/18 11:15:32 by imel-haj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	check_lin_p_c(char *lin, t_data *data)
 	if (chk == -1 || check_put(chk, lin, data) == -1)
 	{
 		if (chk == -1)
-			write(1, "invalid caracter\n", 18);
+			write(1, "Invalid Caracter\n", 18);
 		get_next_line(-1);
 		return (-1);
 	}
