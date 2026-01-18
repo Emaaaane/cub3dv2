@@ -6,7 +6,7 @@
 /*   By: imel-haj <imel-haj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 15:50:35 by imel-haj          #+#    #+#             */
-/*   Updated: 2026/01/18 12:50:17 by imel-haj         ###   ########.fr       */
+/*   Updated: 2026/01/18 12:59:53 by imel-haj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	main(int ac, char **av)
 	if (load_txt_gun(&data) == -1)
 		return (free_data(&data), mlx_terminate(data.mlx), 1);
 	mlx_cursor_hook(data.mlx, &mouse_hook, &data);
-	mlx_set_cursor_mode(data.mlx, MLX_MOUSE_DISABLED);
 	mlx_loop_hook(data.mlx, handle_input, &data);
 	mlx_loop_hook(data.mlx, handle_shooting, &data);
 	mlx_loop_hook(data.mlx, render_frame, &data);
